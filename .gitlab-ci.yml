@@ -3,9 +3,9 @@ image: registry.gitlab.com/gbraad/centos:7
 before_script:
   - yum install -y git
 
-build:
+build_master:
   script:
-    - ./ceph-build.sh
+    - ./ceph-build.sh master
   artifacts:
     paths:
       - /root/rpmbuild/RPMS
