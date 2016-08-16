@@ -9,3 +9,4 @@ build_master:
   artifacts:
     paths:
       - /root/rpmbuild/RPMS/x86_64
+      - /root/rpmbuild/SRPMS/
