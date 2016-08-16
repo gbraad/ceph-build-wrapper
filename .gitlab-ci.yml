@@ -8,4 +8,4 @@ build_master:
     - ./ceph-build.sh master
   artifacts:
     paths:
-      - /root/rpmbuild/RPMS
+      - /root/rpmbuild/RPMS/x86_64
