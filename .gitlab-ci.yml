@@ -6,7 +6,9 @@ build_master:
     - mv /root/rpmbuild/RPMS/x86_64/* ./public
     - mv /root/rpmbuild/SRPMS/* ./public
     - rm ./public/ceph-debuginfo-*
+    - createrepo --database ./public
+    - ls ./public/ | ./genindex.sh > ./index.html
+    - mv ./index.html ./public
   artifacts:
     paths:
       - public
-
