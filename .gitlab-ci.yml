@@ -1,14 +1,12 @@
-pages:
-  image: registry.gitlab.com/gbraad/ceph-build:c7
+build_centos:
+  image: docker:git
+  services:
+  - docker:dind
   script:
-    - mkdir public
-    - ./ceph-build.sh master
-    - mv /root/rpmbuild/RPMS/x86_64/* ./public
-    - mv /root/rpmbuild/SRPMS/* ./public
-    - rm ./public/ceph-debuginfo-*
-    - createrepo --database ./public
-    - ls ./public/ | ./genindex.sh > ./index.html
-    - mv ./index.html ./public
-  artifacts:
-    paths:
-      - public
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build -t registry.gitlab.com/gbraad/ceph-build:c7 ./centos
+    - docker push registry.gitlab.com/gbraad/ceph-build:c7
+  only:
+    - master
+  when: manual
+
