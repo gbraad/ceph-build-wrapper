@@ -1,20 +1,11 @@
-build_centos:
-  image: docker:git
-  services:
-  - docker:dind
-  script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build -t registry.gitlab.com/gbraad/ceph-build:c7 ./centos
-    - docker push registry.gitlab.com/gbraad/ceph-build:c7
-  only:
-    - master
-
 build_master:
   image: registry.gitlab.com/gbraad/ceph-build:c7
   script:
+    - mkdir public
     - ./ceph-build.sh master
+    - mv /root/rpmbuild/RPMS/x86_64/* ./public
+    - mv /root/rpmbuild/SRPMS/* ./public
   artifacts:
     paths:
-      - /root/rpmbuild/RPMS/x86_64/
-      - /root/rpmbuild/SRPMS/
+      - public
 
