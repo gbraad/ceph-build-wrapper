@@ -1,4 +1,4 @@
-build_master:
+pages:
   image: registry.gitlab.com/gbraad/ceph-build:c7
   script:
     - mkdir public
