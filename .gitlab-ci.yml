@@ -5,6 +5,7 @@ build_master:
     - ./ceph-build.sh master
     - mv /root/rpmbuild/RPMS/x86_64/* ./public
     - mv /root/rpmbuild/SRPMS/* ./public
+    - rm ./public/ceph-debuginfo-*
   artifacts:
     paths:
       - public
