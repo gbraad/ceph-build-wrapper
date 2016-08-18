@@ -3,7 +3,7 @@ set -e
 
 TAG=${1:-"master"}
 
-SRCDIR=/working
+SRCDIR=/workspace
 BUILDAREA=/root/rpmbuild
 
 mkdir -p ${SRCDIR}

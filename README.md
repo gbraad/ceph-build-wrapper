@@ -11,7 +11,7 @@ Usage
 Download the `ceph-master.repo` file and place it in `/etc/yum.repos.d`.
 
 ```
-$ yum install -y 
+$ yum install -y [...]
 ```
 
 
