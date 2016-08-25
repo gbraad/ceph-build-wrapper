@@ -1,5 +1,5 @@
 [ceph-master]
 name=Ceph master
-baseurl=http://gbraad.gitlab.io/ceph-build
+baseurl=http://gbraad.gitlab.io/ceph/
 enabled=1
 gpgcheck=0

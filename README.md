@@ -8,7 +8,7 @@ generating RPM packages. They are for experimental use (NOT production)!
 Usage
 -----
 
-Download the `ceph-master.repo` file and place it in `/etc/yum.repos.d`.
+Download the [ceph-master.repo](http://gbraad.gitlab.io/ceph/ceph-master.repo) file and place it in `/etc/yum.repos.d`.
 
 ```
 $ yum install -y [...]
