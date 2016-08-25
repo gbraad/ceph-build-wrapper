@@ -35,8 +35,8 @@ build_docker_base_jewel_f24:
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - git clone https://github.com/ceph/ceph-docker.git --depth 1 -b master
-    - cd ceph-docker/ceph-releases/jewel/fedora/24/
-    - docker build -t registry.gitlab.com/gbraad/ceph-build:jewel-base-f24 ./base
+    - cd ceph-docker/ceph-releases/jewel/fedora/24/base
+    - docker build -t registry.gitlab.com/gbraad/ceph-build:jewel-base-f24 .
     - docker push registry.gitlab.com/gbraad/ceph-build:jewel-base-f24
   only:
     - master
@@ -49,10 +49,10 @@ build_docker_daemon_jewel_f24:
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - git clone https://github.com/ceph/ceph-docker.git --depth 1 -b master
-    - cd ceph-docker/ceph-releases/jewel/fedora/24
+    - cd ceph-docker/ceph-releases/jewel/fedora/24/daemon
     - docker pull registry.gitlab.com/gbraad/ceph-build:jewel-base-f24
     - docker tag ceph/base:tag-build-master-jewel-fedora-24 registry.gitlab.com/gbraad/ceph-build:jewel-base-f24
-    - docker build -t registry.gitlab.com/gbraad/ceph-build:jewel-daemon-f24 ./daemon
+    - docker build -t registry.gitlab.com/gbraad/ceph-build:jewel-daemon-f24 .
     - docker push registry.gitlab.com/gbraad/ceph-build:jewel-daemon-f24
   only:
     - master
