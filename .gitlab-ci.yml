@@ -51,7 +51,7 @@ build_docker_daemon_jewel_f24:
     - git clone https://github.com/ceph/ceph-docker.git --depth 1 -b master
     - cd ceph-docker/ceph-releases/jewel/fedora/24/daemon
     - docker pull registry.gitlab.com/gbraad/ceph:jewel-base-f24
-    - docker tag ceph/base:tag-build-master-jewel-fedora-24 registry.gitlab.com/gbraad/ceph:jewel-base-f24
+    - docker tag registry.gitlab.com/gbraad/ceph:jewel-base-f24 ceph/base:tag-build-master-jewel-fedora-24
     - tar -czh . | docker build -t registry.gitlab.com/gbraad/ceph:jewel-daemon-f24 -
     - docker push registry.gitlab.com/gbraad/ceph:jewel-daemon-f24
   only:
