@@ -22,8 +22,8 @@ build_docker_build_c7:
   - docker:dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build -t registry.gitlab.com/gbraad/ceph:c7 ./centos
-    - docker push registry.gitlab.com/gbraad/ceph:c7
+    - docker build -t registry.gitlab.com/gbraad/ceph:build-c7 ./centos
+    - docker push registry.gitlab.com/gbraad/ceph:build-c7
   only:
     - master
   when: manual
