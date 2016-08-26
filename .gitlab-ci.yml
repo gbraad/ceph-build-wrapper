@@ -57,3 +57,34 @@ build_docker_daemon_jewel_f24:
   only:
     - master
   when: manual
+
+
+build_docker_base_jewel_c7:
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - git clone https://github.com/ceph/ceph-docker.git --depth 1 -b master
+    - cd ceph-docker/ceph-releases/jewel/centos/7/base
+    - tar -czh . | docker build -t registry.gitlab.com/gbraad/ceph:jewel-base-c7 -
+    - docker push registry.gitlab.com/gbraad/ceph:jewel-base-c7
+  only:
+    - master
+  when: manual
+
+build_docker_daemon_jewel_c7:
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - git clone https://github.com/ceph/ceph-docker.git --depth 1 -b master
+    - cd ceph-docker/ceph-releases/jewel/centos/7/daemon
+    - docker pull registry.gitlab.com/gbraad/ceph:jewel-base-c7
+    - docker tag registry.gitlab.com/gbraad/ceph:jewel-base-c7 ceph/base:tag-build-master-jewel-centos-7
+    - tar -czh . | docker build -t registry.gitlab.com/gbraad/ceph:jewel-daemon-c7 -
+    - docker push registry.gitlab.com/gbraad/ceph:jewel-daemon-c7
+  only:
+    - master
+  when: manual
